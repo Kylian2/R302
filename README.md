@@ -55,9 +55,14 @@ public int profondeur(){
 ````
 
 ## (*) Nombre de sommets
-
 ### Pour un arbre binaire
-```java
+La fonction verifie si les fils existent, si ils existent, la fonction est rapellée sur le somment correspondant au fils. La fonction retourne le nombre de fils (provenant de la récursivité) + 1 (lui-même). 
+
+Le sommet n'ayant pas de fils renvera 0 (fils) + 1(lui-même). 
+
+Un sommet ayant deux fils qui ont respectivement 0 et 2 enfants renvera (0 + 1)(fils 1) + (3 + 1)(fils 2) + 1 (lui-même) soit un total de 5 sommets. 
+
+````java
     public int nbSommet(){
         int nbfils = 0;
         if (this.left() != null){
@@ -71,7 +76,9 @@ public int profondeur(){
 ````
 ### Fonction généralisée
 
-```java
+Cette fonction fonctionne de la même façon, mais ici on parcours chacun des n fils du sommet père.  
+
+````java
     public int nbSommet(){
         int nbfils = 0;
         for (int i = 0; i < this.nbChildren(); i++){
