@@ -121,30 +121,30 @@ public class BTree<T> extends Tree<T> implements BTreeI<T>{
         return this.children().size();
     }
 
-    //(*) Profondeur d'un arbre
-    public int profondeur(){
-        int profondeurD = -1;
-        int profondeurG = -1;
+    //(*) depht d'un arbre
+    public int depht(){
+        int dephtD = 0;
+        int dephtG = 0;
         if(this.left() != null){
-            profondeurG = this.left().profondeur();
+            dephtG = this.left().depht();
         }
         if (this.right() != null){
-            profondeurD = this.right().profondeur();
+            dephtD = this.right().depht();
         }
-        if (profondeurD > profondeurG){
-            return profondeurD+1;
+        if (dephtD > dephtG){
+            return dephtD+1;
         }else{
-            return profondeurG+1;
+            return dephtG+1;
         }
     }
 
-    public int nbSommet(){
+    public int size(){
         int nbfils = 0;
         if (this.left() != null){
-            nbfils += this.left().nbSommet();
+            nbfils += this.left().size();
         } 
         if (this.right() != null){
-            nbfils += this.right().nbSommet();
+            nbfils += this.right().size();
         } 
         return nbfils+1;
     }
@@ -162,9 +162,11 @@ public class BTree<T> extends Tree<T> implements BTreeI<T>{
                                                                                 new BTree(4)),
                                                                         new BTree(3))));
 
+                                                            
+
         root.display();
-        System.out.println(root.profondeur());
-        System.out.println(root.nbSommet());
+        System.out.println(root.depht());
+        System.out.println(root.size());
 
     }
 }

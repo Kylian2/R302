@@ -85,19 +85,19 @@ public class Tree<T> implements TreeI<T>{
     }
 
     //(*) Profondeur d'un arbre
-    public int profondeur(){
-        int[] profondeurs = new int[this.nbChildren()];
+    public int depth(){
+        int[] depths = new int[this.nbChildren()];
 
         for (int i = 0; i < this.nbChildren(); i++){
             if (this.child(i) != null){
-                profondeurs[i] = this.child(i).profondeur();
+                depths[i] = this.child(i).depth();
             }else{
-                profondeurs[i] = -1;
+                depths[i] = 0;
             }
         }
 
-        int profMax = -1;
-        for (int val : profondeurs) {
+        int profMax = 0;
+        for (int val : depths) {
             if (profMax < val){
                 profMax = val;
             }
@@ -105,11 +105,11 @@ public class Tree<T> implements TreeI<T>{
         return profMax+1;
     }
 
-    public int nbSommet(){
+    public int size(){
         int nbfils = 0;
         for (int i = 0; i < this.nbChildren(); i++){
             if(this.child(i) != null){
-                nbfils += this.child(i).nbSommet();
+                nbfils += this.child(i).size();
             }
         }
         return nbfils +1;
@@ -181,7 +181,7 @@ public class Tree<T> implements TreeI<T>{
                        );
 
         System.out.println(a.toString());
-        System.out.println(a.profondeur());
-        System.out.println(a.nbSommet());
+        System.out.println(a.size());
+        System.out.println(a.size());
     }
 }
