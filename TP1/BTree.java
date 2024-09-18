@@ -149,24 +149,26 @@ public class BTree<T> extends Tree<T> implements BTreeI<T>{
         return nbfils+1;
     }
 
-    public static void main(String[] args){
+    public int max() throws Exception{
+        if(!(this.data() instanceof Integer)){
+            throw new Exception("Invalid type of data, data must be an integer");
+        }
+        int max = (int) this.data();
 
-
-        BTree<Integer> root = new BTree(0, new BTree(1,
-                                                        new BTree(2, new BTree(3, new BTree(4))),
-                                                        new BTree(2)),
-                                                new BTree(1, new BTree(2,
-                                                                        new BTree(3,
-                                                                                new BTree(4,
-                                                                                        new BTree(5 ,new BTree(6))),
-                                                                                new BTree(4)),
-                                                                        new BTree(3))));
-
-                                                            
-
-        root.display();
-        System.out.println(root.depht());
-        System.out.println(root.size());
-
+        if(this.left() != null){
+            int l = this.left().max();
+            if(l > max){
+                max = l;
+            }
+        }
+        if(this.right() != null){
+            int r = this.right().max();
+            if(r > max){
+                max = r;
+            }
+        }
+        
+        return max;
     }
+
 }

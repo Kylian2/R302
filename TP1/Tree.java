@@ -115,73 +115,24 @@ public class Tree<T> implements TreeI<T>{
         return nbfils +1;
     }
 
-    public static void main(String[] args){
+    public int max() throws Exception{
+        if(!(this.data() instanceof Integer)){
+            throw new Exception("Invalid type of data, data must be an integer");
+        }
+        int max = (int) this.data();
 
-        Tree<Integer> a = new Tree<>(2, 
-                                 new Tree<>(7,
-                                     new Tree<>(2),
-                                     new Tree<>(6,
-                                        new Tree<>(5),
-                                        new Tree<>(11)
-                                        )
-                                     ),
-                                 new Tree<>(5,
-                                    new Tree<>(9,
-                                        new Tree<>(4)
-                                    )
-                                 )
-                           );
+        int values[] = new int[this.nbChildren()];
 
-        Tree<Integer> b = new Tree<>(3,
-                           new Tree<>(8,
-                               new Tree<>(1),
-                               new Tree<>(9,
-                                  new Tree<>(7),
-                                  new Tree<>(12)
-                               )
-                           ),
-                           new Tree<>(6,
-                              new Tree<>(4,
-                                  new Tree<>(2)
-                              ),
-                              new Tree<>(10)
-                           )
-                         );
+        for (int i = 0; i < this.nbChildren(); i++){
+            values[i] = this.child(i).max();
+        }
+
+        for(int val : values){
+            if(val > max){
+                max = val;
+            }
+        }
         
-        Tree<Integer> c = new Tree<>(10,
-                         new Tree<>(15,
-                             new Tree<>(6,
-                                 new Tree<>(3,
-                                     new Tree<>(1),
-                                     new Tree<>(4)
-                                 ),
-                                 new Tree<>(8)
-                             ),
-                             new Tree<>(12,
-                                 new Tree<>(7),
-                                 new Tree<>(9,
-                                     new Tree<>(5),
-                                     new Tree<>(11)
-                                 )
-                             )
-                         ),
-                         new Tree<>(20,
-                             new Tree<>(17,
-                                 new Tree<>(14),
-                                 new Tree<>(19)
-                             ),
-                             new Tree<>(25,
-                                 new Tree<>(22),
-                                 new Tree<>(30,
-                                     new Tree<>(27),
-                                     new Tree<>(35)
-                                 )
-                             )
-                         )
-                       );
-
-        System.out.println(a.toString());
-        System.out.println(a.size());
-        System.out.println(a.size());
+        return max;
     }
 }
