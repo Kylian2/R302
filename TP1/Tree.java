@@ -121,15 +121,10 @@ public class Tree<T> implements TreeI<T>{
         }
         int max = (int) this.data();
 
-        int values[] = new int[this.nbChildren()];
-
         for (int i = 0; i < this.nbChildren(); i++){
-            values[i] = this.child(i).max();
-        }
-
-        for(int val : values){
-            if(val > max){
-                max = val;
+            int v = this.child(i).max();
+            if(v> max){
+                max = v;
             }
         }
         
