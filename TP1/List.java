@@ -87,4 +87,23 @@ public class List<T> extends BTree<T> implements ListI<T> {
         else throw new IndexOutOfBoundsException();
     }
 
+    public boolean isSorted() throws Exception{
+        if(!(this.data() instanceof Double)){
+            throw new Exception("Invalid datatype, data must be a double");
+        }
+        boolean isSorted = true;
+        if (this.tail() != null){
+            isSorted = this.tail().isSorted();
+        }
+        if(isSorted){
+            if (this.parent() != null){
+                isSorted = (double) this.parent().data() < (double) this.data();
+                //To see the comparison : System.out.println(this.parent().data() + " < " + this.data() + " = " + isSorted);
+            }
+            return isSorted;
+        }else{
+            return isSorted;
+        }
+    }
+
 }
