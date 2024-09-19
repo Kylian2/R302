@@ -88,9 +88,7 @@ public class List<T> extends BTree<T> implements ListI<T> {
     }
 
     public boolean isSorted() throws Exception{
-        if(!(this.data() instanceof Double)){
-            throw new Exception("Invalid datatype, data must be a double");
-        }
+
         boolean isSorted = true;
         if (this.tail() != null){
             isSorted = this.tail().isSorted();
@@ -104,6 +102,45 @@ public class List<T> extends BTree<T> implements ListI<T> {
         }else{
             return isSorted;
         }
+    }
+
+    public boolean isSorted3() throws Exception{
+
+        boolean isSorted = true;
+        if (this.tail() != null && (double) this.tail().data() > (double) this.data()){
+            isSorted = this.tail().isSorted();
+        }else{
+            return false;
+        }
+        return isSorted;
+    }
+
+    public void insertAt(int index, T element) throws IndexOutOfBoundsException {
+        if (index < 0 || index > this.length()) {
+            throw new IndexOutOfBoundsException("Index hors limites.");
+        }
+
+        if (index == 0) {
+            // Insérer à la tête
+            List<T> newTail = new List<>(this.data, this.tail() != null ? this.tail().data() : null);
+            this.data = element;
+            this.tail = newTail;
+        } else if (index == 1 && this.tail == null) {
+            // Insérer à la fin de la liste
+            this.tail = new List<>(element);
+        } else {
+            // Insertion au milieu
+            this.tail.insertAt(index - 1, element);
+        }
+    }
+
+    public boolean isSorted2(){
+        boolean isSorted = true;
+        if(tail != null){
+            if((double) data > (double) tail().data()) isSorted = false;
+            else tail.isSorted2();
+        }
+        return isSorted;
     }
 
 }
