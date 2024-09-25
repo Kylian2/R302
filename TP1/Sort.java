@@ -2,6 +2,11 @@ public class Sort {
 
     //implémenté comme méthode de la classe List
 
+    public static List<Double> addInOrder(List<Double> list, Double in){
+        
+        return list;
+    }
+
     public static void main(String... args){
         List<Double> l = new List<>(0.0,20.3, -6.3);
         l.display();
