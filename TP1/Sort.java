@@ -3,8 +3,14 @@ public class Sort {
     //implémenté comme méthode de la classe List
 
     public static List<Double> addInOrder(List<Double> list, Double in){
-        
-        return list;
+        List<Double> x = new List<> (in);
+        if (list.data() > in){
+            x.setTail(list);
+            return x;
+        }else{
+            list.setTail(addInOrder(list.tail(), in));
+            return list;
+        }
     }
 
     public static void main(String... args){
@@ -55,6 +61,11 @@ public class Sort {
         } catch (Exception e) {
             System.out.println(e);
         }
+
+        System.out.println("Ajout de 5.5 à la list l3");
+        l3.display();
+        l3 = addInOrder(l3, 5.5);
+        l3.display();
 
     }
 }
