@@ -29,23 +29,27 @@ public class BTree<T> extends Tree<T> implements BTreeI<T>{
         return this.parent;
     }
 
-    public BTree<T> left() {
-        return this.left;
-    }
+public BTree<T> left() {
+    return this.left;
+}
 
-    public void setLeft(BTree<T> t) {
-        this.left = t;
+public void setLeft(BTree<T> t) {
+    this.left = t;
+    if(this.left != null){ //Pour éviter l'exception
         this.left.parent = this;
     }
+}
 
-    public BTree<T> right() {
-        return this.right;
-    }
+public BTree<T> right() {
+    return this.right;
+}
 
-    public void setRight(BTree<T> t) {
-        this.right = t;
+public void setRight(BTree<T> t) {
+    this.right = t;
+    if(this.right != null){ //Pour éviter l'exception
         this.right.parent = this;
     }
+}
 
      /* Adapted from VasiliNovikov@StackOverflow */
 
