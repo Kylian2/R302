@@ -1,6 +1,17 @@
 public class Sort {
 
     //implémenté comme méthode de la classe List
+    public static boolean isSorted(List<Double> list) throws Exception{
+
+        boolean isSorted = true;
+        //Si la valeur suivante n'est pas nulle et que la valeur suivante est plus grande, on relance 
+        if (list.tail() != null && (double) list.tail().data() >= (double) list.data()){
+            isSorted = list.tail().isSorted();
+        }else{
+            return false;
+        }
+        return isSorted;
+    }
 
     public static List<Double> addInOrder(List<Double> list, Double in){
         List<Double> x = new List<> (in);

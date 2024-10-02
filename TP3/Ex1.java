@@ -43,12 +43,20 @@ public class Ex1 {
         BTree<String> DOM = new BTree<>("html", new BTree<>("head"),
                                             new BTree<>("body", new BTree<>("div", new BTree<>("div")), new BTree<>("div")));
 
-        DOM.display();
-        String element = "div";
-        System.out.println("Il y a " + nbElement(DOM, element) + " " + element);
+        BTree<String> DOM2 = new BTree<>("html", 
+        new BTree<>("head", null, null), 
+        new BTree<>("body",
+            new BTree<>("div", null, null),
+            new BTree<>("div", null, null)
+        ) 
+        );
 
-        String e1 = "html";
-        String e2 = "body";
-        System.out.println("Il y a " + nbDescendant(DOM, e1, e2) + " " + e1+">"+e2);
+        DOM2.display();
+        String element = "div";
+        System.out.println("Il y a " + nbElement(DOM2, element) + " " + element);
+
+        String e1 = "body";
+        String e2 = "div";
+        System.out.println("Il y a " + nbDescendant(DOM2, e1, e2) + " " + e1+">"+e2);
     }
 }

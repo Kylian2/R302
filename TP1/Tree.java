@@ -86,23 +86,15 @@ public class Tree<T> implements TreeI<T>{
 
     //(*) Profondeur d'un arbre
     public int depth(){
-        int[] depths = new int[this.nbChildren()];
+        int max = 0;
 
         for (int i = 0; i < this.nbChildren(); i++){
-            if (this.child(i) != null){
-                depths[i] = this.child(i).depth();
-            }else{
-                depths[i] = 0;
+            int v = this.child(i).depth();
+            if(v > max){
+                max = v;
             }
         }
-
-        int profMax = 0;
-        for (int val : depths) {
-            if (profMax < val){
-                profMax = val;
-            }
-        }
-        return profMax+1;
+        return max+1;
     }
 
     public int size(){
